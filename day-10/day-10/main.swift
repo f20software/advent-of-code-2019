@@ -20,6 +20,19 @@ func replace(myString: String, _ index: Int, _ newChar: Character) -> String {
     return modifiedString
 }
 
+func gcdIterativeEuklid(_ m: Int, _ n: Int) -> Int {
+    var a: Int = 0
+    var b: Int = max(m, n)
+    var r: Int = min(m, n)
+
+    while r != 0 {
+        a = b
+        b = r
+        r = a % b
+    }
+    return b
+}
+
 class Radar {
     
     var map: [String]
@@ -47,19 +60,6 @@ class Radar {
         }
 
         return true
-    }
-    
-    func gcdIterativeEuklid(_ m: Int, _ n: Int) -> Int {
-        var a: Int = 0
-        var b: Int = max(m, n)
-        var r: Int = min(m, n)
-
-        while r != 0 {
-            a = b
-            b = r
-            r = a % b
-        }
-        return b
     }
     
     func scanPoint(px: Int, py: Int) -> Int {
@@ -148,15 +148,123 @@ class Radar {
     }
 }
 
+class Asteroid {
+
+    var x: Int
+    var y: Int
+
+    var dx: Int
+    var dy: Int
+    
+    var mdx: Int
+    var mdy: Int
+    
+    var angle: Int
+    var distance: Int
+    
+    init(x: Int, y: Int, fromX: Int, fromY: Int) {
+        self.x = x
+        self.y = y
+
+        dx = x - fromX
+        dy = y - fromY
+        distance = abs(dx) + abs(dy)
+        
+        mdx = dx
+        mdy = dy
+        
+        if dx == 0 {
+            mdy = dy / abs(dy)
+        }
+        else if dy == 0 {
+            mdx = dx / abs(dx)
+        }
+        else {
+            let gcd = gcdIterativeEuklid(abs(dx), abs(dy))
+            if gcd > 1 {
+                mdx = dx / gcd
+                mdy = dy / gcd
+            }
+        }
+
+        var fa: Float = 0
+        angle = 0
+        if (mdx == 0 && mdy > 0) { fa = 180 }
+        else if (mdx == 0 && mdy < 0) { fa = 0 }
+        else if (mdy == 0 && mdx > 0) { fa = 90 }
+        else if (mdy == 0 && mdx < 0) { fa = 270 }
+        else {
+            fa = atan(Float(abs(mdy)) / Float(abs(mdx))) * 360 / (2 * 3.1415926)
+            if (mdy < 0 && mdx < 0) {
+                fa += 270
+            }
+            else if (mdy < 0 && mdx > 0) {
+                fa = 90 - fa
+            }
+            else if (mdx < 0 && mdy > 0) {
+                fa = 270 - fa
+            }
+            else {
+                fa = 90 + fa
+            }
+        }
+        
+        angle = Int(fa * 100)
+    }
+    
+    func printOut() {
+        print("\(x), \(y), angle \(mdx), \(mdy), \(angle)")
+    }
+}
+
 let size = 26
 let map = input
 
+// Part 2
+
+var asteroids = [Asteroid]()
+let fromX = 20
+let fromY = 19
+
+for y in 0..<size {
+    for x in 0..<size {
+        if x == fromX && y == fromY { continue }
+        if map[y][x] == "#" {
+            asteroids.append(Asteroid(x: x, y: y, fromX: fromX, fromY: fromY))
+        }
+    }
+}
+
+asteroids = asteroids.sorted(by: { (a, b) -> Bool in
+    if a.angle == b.angle {
+        return a.distance < b.distance
+    }
+    return a.angle < b.angle
+})
+
+var printed = 0
+var currentAngle = -1
+var i = 0
+
+while printed < 200 {
+    if asteroids[i].angle != currentAngle {
+        asteroids[i].printOut()
+        printed += 1
+        currentAngle = asteroids[i].angle
+        asteroids.remove(at: i)
+    }
+    else {
+        i += 1
+    }
+    
+    if i == asteroids.count {
+        i = 0
+    }
+}
+
+// Part 1
+
 var maxVisible = -1
-
-//let r = Radar(map: map, x: 5, y: 8, size: size)
-//let visible = r.scan()
-//print("Point 3, 4 - visible \(visible)")
-
 for y in 0..<size {
     for x in 0..<size {
         let r = Radar(map: map, x: x, y: y, size: size)
@@ -168,6 +276,8 @@ for y in 0..<size {
         }
     }
 }
+
+
 
 
 
