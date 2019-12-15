@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F292549A23A5DBC2009D189D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F292549923A5DBC2009D189D /* main.swift */; };
+		F2D1120C23A6A1D200A8A1A6 /* input.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D1120B23A6A1D200A8A1A6 /* input.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		F292549623A5DBC2009D189D /* day-11 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "day-11"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F292549923A5DBC2009D189D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F2D1120B23A6A1D200A8A1A6 /* input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = input.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +43,7 @@
 		F292548D23A5DBC2009D189D = {
 			isa = PBXGroup;
 			children = (
-				F292549823A5DBC2009D189D /* day-11 */,
+				F292549823A5DBC2009D189D /* day-12 */,
 				F292549723A5DBC2009D189D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +56,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F292549823A5DBC2009D189D /* day-11 */ = {
+		F292549823A5DBC2009D189D /* day-12 */ = {
 			isa = PBXGroup;
 			children = (
 				F292549923A5DBC2009D189D /* main.swift */,
+				F2D1120B23A6A1D200A8A1A6 /* input.swift */,
 			);
-			path = "day-11";
+			path = "day-12";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,7 +100,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F292549123A5DBC2009D189D /* Build configuration list for PBXProject "day-11" */;
+			buildConfigurationList = F292549123A5DBC2009D189D /* Build configuration list for PBXProject "day-12" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -120,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2D1120C23A6A1D200A8A1A6 /* input.swift in Sources */,
 				F292549A23A5DBC2009D189D /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,7 +269,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F292549123A5DBC2009D189D /* Build configuration list for PBXProject "day-11" */ = {
+		F292549123A5DBC2009D189D /* Build configuration list for PBXProject "day-12" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F292549B23A5DBC2009D189D /* Debug */,
